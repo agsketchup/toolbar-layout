@@ -32,3 +32,6 @@ releases/
 .env
 .env.*
 !.env.example
+
+# Internal copy / drafts not meant for public repo
+docs/
