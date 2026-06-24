@@ -35,3 +35,8 @@ releases/
 
 # Internal copy / drafts not meant for public repo
 docs/
+
+# Security architecture — kept local, not exposed via GitHub
+# (security.txt remains tracked because it must be served publicly per RFC 9116)
+SECURITY.md
+_headers
