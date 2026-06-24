@@ -38,11 +38,6 @@
 html { scroll-behavior:smooth }
 body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; -webkit-font-smoothing:antialiased }
 
-/* DOWNLOAD TOAST */
-.dl-toast { position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(12px); padding:10px 22px; border-radius:10px; font-size:13px; font-weight:600; opacity:0; transition:opacity .3s,transform .3s; z-index:2000; pointer-events:none; white-space:nowrap }
-.dl-ok   { background:rgba(60,200,100,.18); border:1px solid rgba(60,200,100,.35); color:#5de08a }
-.dl-warn { background:rgba(220,100,60,.18); border:1px solid rgba(220,100,60,.35); color:#f0825a }
-
 /* NOISE */
 body::after { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity:.022; pointer-events:none; z-index:1 }
 
@@ -251,7 +246,6 @@ footer { position:relative; z-index:2; border-top:1px solid var(--border); paddi
 </div>
 
 <div id="prog"></div>
-<div id="dlToast" class="dl-toast"></div>
 
 <!-- TOP BAR -->
 <div class="top-bar">
@@ -387,12 +381,9 @@ footer { position:relative; z-index:2; border-top:1px solid var(--border); paddi
       <div class="step r3d" style="transition-delay:.0s">
         <div class="step-n">1</div>
         <h3>Download the .rbz</h3>
-        <p>Get the extension file from the Extension Warehouse or download directly below.</p>
+        <p>Get the extension file from the Extension Warehouse. Free, no account required.</p>
         <span class="step-cmd">ags_toolbar_layout.rbz</span>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
-          <a href="https://extensions.sketchup.com/en/content/toolbar-layout" target="_blank" rel="noopener noreferrer" class="step-path" style="text-decoration:none">Extension Warehouse</a>
-          <button onclick="downloadPlugin()" class="step-path" style="cursor:pointer;border:none;background:rgba(85,120,216,.18);color:var(--blue-l)">Direct download</button>
-        </div>
+        <span class="step-path">Extension Warehouse</span>
       </div>
 
       <div class="step r3d" style="transition-delay:.12s">
@@ -560,38 +551,6 @@ window.addEventListener('scroll', () => {
   document.querySelector('.ab1').style.transform = `translate(0,${y * .035}px)`;
   document.querySelector('.ab3').style.transform = `translate(0,${-y * .025}px)`;
 }, { passive: true });
-
-/* DOWNLOAD RATE LIMIT */
-const DL_KEY   = 'tbl_dl';
-const DL_LIMIT = 3;
-const DL_WIN   = 86400000; // 24h ms
-
-function downloadPlugin() {
-  const now  = Date.now();
-  let   data = JSON.parse(localStorage.getItem(DL_KEY) || '{"ts":0,"n":0}');
-
-  if (now - data.ts > DL_WIN) data = { ts: now, n: 0 }; // reset window
-
-  if (data.n >= DL_LIMIT) {
-    const remaining = Math.ceil((DL_WIN - (now - data.ts)) / 3600000);
-    showToast(`Download limit reached (${DL_LIMIT}/day). Try again in ~${remaining}h.`, 'warn');
-    return;
-  }
-
-  data.n++;
-  localStorage.setItem(DL_KEY, JSON.stringify(data));
-  showToast('Download started!', 'ok');
-  window.location.href = '/download/ags_toolbar_layout_2.0.0.rbz';
-}
-
-function showToast(msg, type) {
-  const t = document.getElementById('dlToast');
-  t.textContent = msg;
-  t.className = 'dl-toast ' + (type === 'ok' ? 'dl-ok' : 'dl-warn');
-  t.style.opacity = '1'; t.style.transform = 'translateY(0)';
-  clearTimeout(t._tid);
-  t._tid = setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateY(12px)'; }, 3000);
-}
 
 /* CONTACT FORM */
 document.getElementById('cForm').addEventListener('submit', e => {
