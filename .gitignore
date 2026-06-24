@@ -22,10 +22,10 @@ npm-debug.log*
 *.cache
 ~$*
 
-# === SECURITY: never commit RBZ packages ===
-# RBZ is just a ZIP — pushing them publicly exposes the full Ruby/JS source.
-# Distribute via Extension Warehouse only.
-*.rbz
+# === RBZ packages ===
+# Ruby logic is shipped as encrypted .rbe — safe to publish.
+# Front-end (ui.html / ui.js) remains readable; OK as-is.
+# *.rbz
 releases/
 
 # Local env
