@@ -1,0 +1,12 @@
+# security.txt — AGS SketchUp / Toolbar Layout
+# RFC 9116 — https://securitytxt.org/
+#
+# If you discover a security vulnerability in this site or in the
+# Toolbar Layout SketchUp extension, please report it responsibly.
+
+Contact: mailto:agsketchup@proton.me
+Preferred-Languages: en, fr
+Expires: 2027-06-24T00:00:00.000Z
+Policy: https://github.com/arikghre/toolbar-layout/blob/main/SECURITY.md
+Acknowledgments: https://github.com/arikghre/toolbar-layout/blob/main/SECURITY.md
+Canonical: https://toolbarlayout.github.io/.well-known/security.txt

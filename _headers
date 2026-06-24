@@ -1,0 +1,43 @@
+##############################################################################
+# Netlify / Cloudflare Pages _headers
+# Applies HTTP security headers to every response served from this origin.
+# GitHub Pages does NOT support custom headers — use Cloudflare as a proxy
+# (free plan) to enforce these at the edge for DDoS protection + rate limiting.
+#
+# DDoS / rate-limiting recommendations (Cloudflare free tier):
+#   Security > WAF > Rate Limiting rules:
+#     • All traffic:  5 000 req/min per IP  → Block 10 min
+#     • Contact form: n/a (mailto: only, no backend endpoint)
+#   Security > Bots > Bot Fight Mode: ON
+#   Security > Settings > Security Level: Medium
+#   Speed > Optimization > Rocket Loader: OFF (static site, not needed)
+##############################################################################
+
+/*
+  # Clickjacking prevention
+  X-Frame-Options: DENY
+
+  # MIME-type sniffing prevention
+  X-Content-Type-Options: nosniff
+
+  # Legacy XSS filter (IE/older Chrome)
+  X-XSS-Protection: 1; mode=block
+
+  # Referrer sent only to same origin (privacy + analytics hygiene)
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Disable browser features not needed on a static marketing page
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), bluetooth=(), accelerometer=(), gyroscope=()
+
+  # Force HTTPS for 2 years, include subdomains
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+  # Content Security Policy
+  # 'unsafe-inline' is required because the page uses substantial inline CSS/JS.
+  # To eliminate it, extract scripts to .js files and use nonce-based CSP.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; frame-src https://www.youtube-nocookie.com; img-src 'self' data:; media-src 'none'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+
+  # Prevent sending cookies cross-site
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Embedder-Policy: unsafe-none
+  Cross-Origin-Resource-Policy: same-origin
