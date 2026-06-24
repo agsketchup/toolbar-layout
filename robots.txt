@@ -83,4 +83,4 @@ Crawl-delay: 10
 Disallow: /.well-known/
 
 # ── Sitemap ───────────────────────────────────────────────────────────────────
-Sitemap: https://toolbarlayout.github.io/sitemap.xml
+Sitemap: https://www.toolbarlayout.com/sitemap.xml

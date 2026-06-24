@@ -7,6 +7,6 @@
 Contact: mailto:agsketchup@proton.me
 Preferred-Languages: en, fr
 Expires: 2027-06-24T00:00:00.000Z
-Policy: https://github.com/arikghre/toolbar-layout/blob/main/SECURITY.md
-Acknowledgments: https://github.com/arikghre/toolbar-layout/blob/main/SECURITY.md
-Canonical: https://toolbarlayout.github.io/.well-known/security.txt
+Policy: https://github.com/agsketchup/toolbar-layout/blob/main/SECURITY.md
+Acknowledgments: https://github.com/agsketchup/toolbar-layout/blob/main/SECURITY.md
+Canonical: https://www.toolbarlayout.com/.well-known/security.txt
