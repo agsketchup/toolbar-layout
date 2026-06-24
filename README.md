@@ -23,7 +23,9 @@ only the public landing page.
 | File | Role |
 |------|------|
 | `index.html` | Single-page landing site (hero, features, install, demo, support, contact) |
-| `logo.png` | AGS Toolbar Layout logo (nav, footer, favicon) |
+| `images/logo.png` | AGS Toolbar Layout logo (nav, footer) |
+| `icons/favicon.*` | Favicon set (16/32/48/180/192/512 + .ico) |
+| `download/ags_toolbar_layout_*.rbz` | Extension package for direct download |
 | `_headers` | Security HTTP headers (CSP, HSTS, X-Frame-Options…) for Netlify/Cloudflare-compatible hosts |
 | `robots.txt` | Crawler rules — blocks scrapers and AI bots, allows major search engines |
 | `vercel.json` | Vercel deployment configuration |

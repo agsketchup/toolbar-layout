@@ -7,7 +7,7 @@
   ],
   "headers": [
     {
-      "source": "/releases/(.*)\\.rbz",
+      "source": "/download/(.*)\\.rbz",
       "headers": [
         { "key": "Content-Type", "value": "application/octet-stream" },
         { "key": "Content-Disposition", "value": "attachment" },
